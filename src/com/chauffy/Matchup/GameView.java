@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-/**
- * Created by Dad on 12/17/2015.
- */
 public class GameView extends Activity {
     public Tile[] board=new Tile[16];
     public int[] boardById=new int[16];
@@ -35,23 +32,14 @@ public class GameView extends Activity {
             while(!gotit) {
                 Random r = new Random();
                 myr= r.nextInt(16);
-                if (tilecheck[myr]==false) gotit = true;
+                if (!tilecheck[myr]) gotit = true;
             }
             Tile temp=new Tile(myr);
             tilecheck[myr]=true;
             board[i]=temp;
             boardById[i]=myr;
             setTile(i,myr);
-            setTurn();
         }
-    }
-
-    public void setTurn(){
-        Random r=new Random();
-        int i=r.nextInt(1);
-        if(i>0)turn=true;
-        else turn=false;
-        displayTurn();
     }
 
     public void displayTurn(){
@@ -186,7 +174,6 @@ public class GameView extends Activity {
         if((currentC>0&&currentK>0)&&board[t-1].c!=currentC&&board[t-1].k!=currentK){
             return;
         }
-        else {
             currentC=board[t-1].c;
             currentK=board[t-1].k;
             Button curr = (Button) findViewById(R.id.button);
@@ -215,12 +202,13 @@ public class GameView extends Activity {
                     TextView tv1 = (TextView)findViewById(R.id.textView);
                     tv1.setText("Second Player Wins!");
                 }
+                currentK=42;
+                currentC=43;
             }
             else {
                 turn = !turn;
                 displayTurn();
             }
-        }
     }
 
     public boolean checkForTie(){
@@ -231,11 +219,7 @@ public class GameView extends Activity {
     }
 
     public boolean checkForWin(){
-        if(fourInARow()||fourInABox()){
-            return true;
-        }
-        if(!availableMoves())return true;
-        return false;
+        return (fourInARow()||fourInABox()||!availableMoves());
     }
 
     public boolean availableMoves(){

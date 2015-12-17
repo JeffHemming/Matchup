@@ -9,5 +9,12 @@
             android:layout_height="wrap_content"
             android:text="Start Game"
             android:id="@+id/button17" android:layout_weight="0.30" android:onClick="startGame"/>
+    <TextView
+            android:layout_width="344dp"
+            android:layout_height="218dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Players take turns picking tiles.  You must select a tile that is either the same color or the same kid.  You win if you get 4 in a row, or 4 in a box (a 2x2 square).  You also win if the other player can&apos;t make a move."
+            android:id="@+id/textView2" android:layout_gravity="center_horizontal" android:textSize="30dp"
+            android:layout_weight="0.58" android:gravity="center"/>
 </LinearLayout>
 
